@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaEdit, FaSave, FaTimes } from "react-icons/fa"; // Kalem ve X ikonu
+import { FaEdit, FaSave, FaTimes } from "react-icons/fa";
 
 function NoteItem({ note, index, deleteNote, editNote }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -18,10 +18,10 @@ function NoteItem({ note, index, deleteNote, editNote }) {
     <div className="note-item">
       {isEditing ? (
         <div>
-          <input
-            type="text"
+          <textarea
             value={editedText}
             onChange={(e) => setEditedText(e.target.value)}
+            className="note-content"
           />
           <button onClick={handleSave}>
             {" "}
@@ -33,10 +33,10 @@ function NoteItem({ note, index, deleteNote, editNote }) {
           <span>{note}</span>
           <div className="note-actions">
             <button className="edit" onClick={handleEdit}>
-              <FaEdit /> {/* Kalem ikonu */}
+              <FaEdit />
             </button>
             <button className="delete" onClick={() => deleteNote(index)}>
-              <FaTimes /> {/* X ikonu */}
+              <FaTimes />
             </button>
           </div>
         </div>

@@ -16,6 +16,7 @@ function NoteInput({ addNote }) {
       <input
         type="text"
         placeholder="Bir not girin"
+        className="input-note"
         value={noteText}
         onChange={(e) => setNoteText(e.target.value)}
       />

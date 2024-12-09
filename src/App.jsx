@@ -8,6 +8,7 @@ function App() {
     const savedNotes = localStorage.getItem("notes");
     return savedNotes ? JSON.parse(savedNotes) : [];
   });
+
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
@@ -25,14 +26,12 @@ function App() {
     const newNotes = notes.map((note, i) => (i === index ? newText : note));
     setNotes(newNotes);
   };
+
   return (
     <div>
-      {" "}
-      <div>
-        <h1>Dijital Not Defteri</h1>
-        <NoteInput addNote={addNote} />
-        <NotesList notes={notes} deleteNote={deleteNote} editNote={editNote} />
-      </div>
+      <h1>Dijital Not Defteri</h1>
+      <NoteInput addNote={addNote} />
+      <NotesList notes={notes} deleteNote={deleteNote} editNote={editNote} />
     </div>
   );
 }
