@@ -1,7 +1,8 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+
 function NoteInput({ addNote }) {
   const [noteText, setNoteText] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (noteText.trim()) {
@@ -9,6 +10,7 @@ function NoteInput({ addNote }) {
       setNoteText("");
     }
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <input

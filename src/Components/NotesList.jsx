@@ -3,7 +3,7 @@ import NoteItem from "./NoteItem";
 
 function NotesList({ notes, deleteNote, editNote }) {
   return (
-    <div>
+    <div className="note-container">
       {notes.map((note, index) => (
         <NoteItem
           key={index}
