@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import NoteInput from "./Components/NoteInput";
 import NotesList from "./Components/NotesList";
+import Logo from "./images/diginote.png";
 import "./App.css";
-
 function App() {
   const [notes, setNotes] = useState(() => {
     const savedNotes = localStorage.getItem("notes");
@@ -29,8 +29,12 @@ function App() {
 
   return (
     <div>
-      <h1>Dijital Not Defteri</h1>
-      <NoteInput addNote={addNote} />
+      <header className="header">
+        <img src={Logo} alt="Dijital Not Defteri" />
+      </header>
+      <div className="input-note-container">
+        <NoteInput addNote={addNote} />
+      </div>
       <NotesList notes={notes} deleteNote={deleteNote} editNote={editNote} />
     </div>
   );

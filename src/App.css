@@ -8,25 +8,53 @@ body {
   align-items: center;
   min-height: 100vh;
   flex-direction: column;
+  padding-top: 150px;
+}
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  padding: 20px 0;
+  z-index: 1000;
+}
+
+.header img {
+  height: 180px;
+}
+
+.input-note-container {
+  position: absolute;
+  top: 220px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
 }
 
 .input-note {
-  width: 100%;
-  max-width: 400px;
-  padding: 12px;
-  font-size: 1rem;
+  width: 90%;
+  max-width: 800px;
+  padding: 15px;
+  font-size: 1.2rem;
   color: #333;
-  border: 2px solid #ccc;
-  border-radius: 5px;
+  border: 2px solid #4caf50;
+  border-radius: 8px;
   background-color: #fff;
   outline: none;
-  margin-bottom: 20px;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
   box-sizing: border-box;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .input-note:focus {
-  border-color: #4caf50;
+  border-color: #388e3c;
+  box-shadow: 0 4px 6px rgba(56, 142, 60, 0.5);
 }
 
 .input-note::placeholder {
@@ -38,29 +66,33 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
   max-width: 100%;
-  padding: 10px;
+  padding: 20px;
   box-sizing: border-box;
+  margin-top: 150px;
 }
 
 .note-item {
   width: 200px;
-  padding: 15px;
+  padding: 20px;
   border-radius: 10px;
   background-color: #ffe082;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   position: relative;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
   cursor: pointer;
 }
 
 .note-item:hover {
   transform: scale(1.05);
+  background-color: #ffd54f;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .note-content {
