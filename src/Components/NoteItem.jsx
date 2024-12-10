@@ -5,24 +5,21 @@ function NoteItem({ note, index, deleteNote, editNote }) {
   const [editedText, setEditedText] = useState(note);
   const noteRef = useRef(null);
 
-  const adjustHeight = (element) => {
-    element.style.height = "auto";
-    element.style.height = `${element.scrollHeight}px`;
-  };
-
   useEffect(() => {
     const textarea = noteRef.current;
     if (textarea) {
-      adjustHeight(textarea);
+      textarea.style.height = "auto";
+      textarea.style.height = `${textarea.scrollHeight}px`;
     }
   }, [editedText]);
 
   const handleTextChange = (e) => {
     setEditedText(e.target.value);
     editNote(index, e.target.value);
+  };
 
-    const textarea = e.target;
-    adjustHeight(textarea);
+  const handleDelete = () => {
+    deleteNote(index);
   };
 
   return (
@@ -39,7 +36,7 @@ function NoteItem({ note, index, deleteNote, editNote }) {
           overflow: "hidden",
         }}
       />
-      <button className="delete" onClick={() => deleteNote(index)}>
+      <button className="delete" onClick={handleDelete}>
         <FaTimes />
       </button>
     </div>

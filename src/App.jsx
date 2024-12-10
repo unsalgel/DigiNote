@@ -3,6 +3,7 @@ import NoteInput from "./Components/NoteInput";
 import NotesList from "./Components/NotesList";
 import Logo from "./images/diginote.png";
 import "./App.css";
+
 function App() {
   const [notes, setNotes] = useState(() => {
     const savedNotes = localStorage.getItem("notes");
@@ -18,13 +19,13 @@ function App() {
   };
 
   const deleteNote = (index) => {
-    const newNotes = notes.filter((_, i) => i !== index);
-    setNotes(newNotes);
+    setNotes((prevNotes) => prevNotes.filter((_, i) => i !== index));
   };
 
   const editNote = (index, newText) => {
-    const newNotes = notes.map((note, i) => (i === index ? newText : note));
-    setNotes(newNotes);
+    setNotes((prevNotes) =>
+      prevNotes.map((note, i) => (i === index ? newText : note))
+    );
   };
 
   return (
