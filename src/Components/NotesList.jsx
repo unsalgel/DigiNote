@@ -6,7 +6,7 @@ function NotesList({ notes, deleteNote, editNote }) {
     <div className="note-container">
       {notes.map((note, index) => (
         <NoteItem
-          key={index}
+          key={`${note}-${index}`}
           note={note}
           index={index}
           deleteNote={deleteNote}

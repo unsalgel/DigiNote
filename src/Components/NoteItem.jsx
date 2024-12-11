@@ -15,7 +15,10 @@ function NoteItem({ note, index, deleteNote, editNote }) {
 
   const handleTextChange = (e) => {
     setEditedText(e.target.value);
-    editNote(index, e.target.value);
+  };
+
+  const handleBlur = () => {
+    editNote(index, editedText);
   };
 
   const handleDelete = () => {
@@ -28,6 +31,7 @@ function NoteItem({ note, index, deleteNote, editNote }) {
         ref={noteRef}
         value={editedText}
         onChange={handleTextChange}
+        onBlur={handleBlur}
         className="note-content"
         maxLength="240"
         style={{
