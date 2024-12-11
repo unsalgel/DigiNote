@@ -29,7 +29,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="app">
       <header className="header">
         <img src={Logo} alt="Dijital Not Defteri" />
       </header>

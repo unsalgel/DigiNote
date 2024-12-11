@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 
 function NoteItem({ note, index, deleteNote, editNote }) {
-  const [editedText, setEditedText] = useState(note);
+  const [editedText, setEditedText] = useState(note.noteText);
+  const [editedTitle, setEditedTitle] = useState(note.title);
   const noteRef = useRef(null);
 
   useEffect(() => {
@@ -17,8 +18,12 @@ function NoteItem({ note, index, deleteNote, editNote }) {
     setEditedText(e.target.value);
   };
 
+  const handleTitleChange = (e) => {
+    setEditedTitle(e.target.value);
+  };
+
   const handleBlur = () => {
-    editNote(index, editedText);
+    editNote(index, { title: editedTitle, noteText: editedText });
   };
 
   const handleDelete = () => {
@@ -27,6 +32,14 @@ function NoteItem({ note, index, deleteNote, editNote }) {
 
   return (
     <div className="note-item">
+      <input
+        type="text"
+        value={editedTitle}
+        onChange={handleTitleChange}
+        onBlur={handleBlur}
+        className="note-title"
+        maxLength="50"
+      />
       <textarea
         ref={noteRef}
         value={editedText}
@@ -35,7 +48,7 @@ function NoteItem({ note, index, deleteNote, editNote }) {
         className="note-content"
         maxLength="240"
         style={{
-          minHeight: "50px",
+          minHeight: "80px",
           resize: "none",
           overflow: "hidden",
         }}
