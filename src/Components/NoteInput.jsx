@@ -1,47 +1,65 @@
-import React, { useState } from "react";
-import { FaListUl } from "react-icons/fa";
+import React, { useState, useRef } from "react";
+import {
+  FaListUl,
+  FaBold,
+  FaItalic,
+  FaUnderline,
+  FaStrikethrough,
+} from "react-icons/fa";
 
 function NoteInput({ addNote }) {
   const [title, setTitle] = useState("");
-  const [noteText, setNoteText] = useState("");
   const [bulletType, setBulletType] = useState("•");
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const noteRef = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const noteText = noteRef.current.innerHTML.replace(/\n/g, "<br>");
     if (title.trim() && noteText.trim()) {
       addNote({ title, noteText });
       setTitle("");
-      setNoteText("");
+      noteRef.current.innerHTML = "";
     }
   };
 
   const applyBulletType = (type) => {
     setBulletType(type);
-    const lines = noteText
-      .split("\n")
-      .map((line) => line.replace(/^[•1.○]\s*/, ""));
-    const newText = lines
-      .map((line, index) => {
-        if (type === "1.") {
-          return `${index + 1}. ${line}`;
-        }
-        return `${type} ${line}`;
-      })
-      .join("\n");
-    setNoteText(newText);
     setDropdownOpen(false);
   };
 
-  const handleTextChange = (e) => {
-    const value = e.target.value;
-    if (e.nativeEvent.inputType === "insertLineBreak") {
-      const lines = value.split("\n");
-      const newLine =
-        bulletType === "1." ? `${lines.length}. ` : `${bulletType} `;
-      setNoteText(value + newLine);
-    } else {
-      setNoteText(value);
+  const formatText = (command) => {
+    document.execCommand(command, false, null);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const newLineNumber =
+        bulletType === "1." ? `${getLineNumber()}. ` : `${bulletType} `;
+      document.execCommand("insertText", false, `\n${newLineNumber}`);
+    }
+  };
+
+  const getLineNumber = () => {
+    const content = noteRef.current.innerText;
+    const lines = content.split("\n");
+    return lines.length;
+  };
+
+  const handleFocus = () => {
+    if (!noteRef.current.innerText) {
+      noteRef.current.innerHTML = bulletType + " ";
+    }
+  };
+
+  const handleInput = (e) => {
+    const selection = window.getSelection();
+    if (selection.rangeCount > 0) {
+      const range = selection.getRangeAt(0);
+      range.collapse(false);
+      selection.removeAllRanges();
+      selection.addRange(range);
     }
   };
 
@@ -59,7 +77,7 @@ function NoteInput({ addNote }) {
           <div className="dropdown">
             <button
               type="button"
-              className="bullet-button"
+              className="format-button"
               onClick={() => setDropdownOpen(!dropdownOpen)}
             >
               <FaListUl />
@@ -72,27 +90,47 @@ function NoteInput({ addNote }) {
               </div>
             )}
           </div>
+          <button
+            type="button"
+            className="format-button"
+            onClick={() => formatText("bold")}
+          >
+            <FaBold />
+          </button>
+          <button
+            type="button"
+            className="format-button"
+            onClick={() => formatText("italic")}
+          >
+            <FaItalic />
+          </button>
+          <button
+            type="button"
+            className="format-button"
+            onClick={() => formatText("underline")}
+          >
+            <FaUnderline />
+          </button>
+          <button
+            type="button"
+            className="format-button"
+            onClick={() => formatText("strikeThrough")}
+          >
+            <FaStrikethrough />
+          </button>
         </div>
-        <textarea
-          placeholder="Bir not girin"
+        <div
           className="input-note"
-          value={noteText}
-          onChange={handleTextChange}
-          onFocus={() => {
-            if (!noteText) {
-              setNoteText(bulletType + " ");
-            }
-          }}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              e.preventDefault();
-              const lines = noteText.split("\n");
-              const newLine =
-                bulletType === "1."
-                  ? `${lines.length + 1}. `
-                  : `${bulletType} `;
-              setNoteText(noteText + "\n" + newLine);
-            }
+          contentEditable
+          ref={noteRef}
+          onFocus={handleFocus}
+          onInput={handleInput}
+          onKeyDown={handleKeyDown}
+          style={{
+            minHeight: "100px",
+            border: "1px solid #ccc",
+            padding: "10px",
+            direction: "ltr",
           }}
         />
       </div>

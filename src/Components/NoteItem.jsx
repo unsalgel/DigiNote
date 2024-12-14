@@ -5,17 +5,53 @@ function NoteItem({ note, index, deleteNote, editNote }) {
   const [editedText, setEditedText] = useState(note.noteText);
   const [editedTitle, setEditedTitle] = useState(note.title);
   const noteRef = useRef(null);
+  const [cursorPosition, setCursorPosition] = useState(null);
+
+  const saveCursorPosition = () => {
+    const selection = window.getSelection();
+    if (selection.rangeCount > 0) {
+      const range = selection.getRangeAt(0);
+      const preCaretRange = range.cloneRange();
+      preCaretRange.selectNodeContents(noteRef.current);
+      preCaretRange.setEnd(range.endContainer, range.endOffset);
+      setCursorPosition(preCaretRange.toString().length);
+    }
+  };
+
+  const restoreCursorPosition = () => {
+    const selection = window.getSelection();
+    const range = document.createRange();
+    let charCount = 0;
+    const traverseNodes = (node) => {
+      if (charCount >= cursorPosition) return;
+      if (node.nodeType === 3) {
+        const textLength = node.textContent.length;
+        if (charCount + textLength >= cursorPosition) {
+          range.setStart(node, cursorPosition - charCount);
+          range.collapse(true);
+          selection.removeAllRanges();
+          selection.addRange(range);
+          return;
+        }
+        charCount += textLength;
+      } else {
+        node.childNodes.forEach(traverseNodes);
+      }
+    };
+    traverseNodes(noteRef.current);
+  };
 
   useEffect(() => {
-    const textarea = noteRef.current;
-    if (textarea) {
-      textarea.style.height = "auto";
-      textarea.style.height = `${textarea.scrollHeight}px`;
+    if (noteRef.current) {
+      restoreCursorPosition();
+      noteRef.current.style.height = "auto";
+      noteRef.current.style.height = `${noteRef.current.scrollHeight}px`;
     }
   }, [editedText]);
 
   const handleTextChange = (e) => {
-    setEditedText(e.target.value);
+    saveCursorPosition();
+    setEditedText(e.currentTarget.innerHTML);
   };
 
   const handleTitleChange = (e) => {
@@ -40,17 +76,18 @@ function NoteItem({ note, index, deleteNote, editNote }) {
         className="note-title"
         maxLength="50"
       />
-      <textarea
-        ref={noteRef}
-        value={editedText}
-        onChange={handleTextChange}
-        onBlur={handleBlur}
+      <div
         className="note-content"
-        maxLength="240"
+        contentEditable
+        ref={noteRef}
+        dangerouslySetInnerHTML={{ __html: editedText }}
+        onBlur={handleBlur}
+        onInput={handleTextChange}
         style={{
           minHeight: "80px",
           resize: "none",
           overflow: "hidden",
+          wordWrap: "break-word",
         }}
       />
       <button className="delete" onClick={handleDelete}>

@@ -91,6 +91,25 @@ body {
   margin-bottom: 10px;
 }
 
+.format-button {
+  background-color: #cce7ff;
+  border: none;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.format-button:hover {
+  background-color: #b3d9ff;
+}
+
 .dropdown {
   position: relative;
   display: inline-block;
