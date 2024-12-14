@@ -45,7 +45,7 @@ Proje çalıştırmak için aşağıdaki araçların bilgisayarınızda kurulu o
    # veya
    yarn start
 
-## **Katkıda Bulunma*
+## *Katkıda Bulunma*
 Projeye katkıda bulunmak isterseniz aşağıdaki adımları izleyebilirsiniz:
 
 Projeyi fork’layın.
