@@ -1,5 +1,11 @@
 # **DigiNote**
 
+### **Ekran Görüntüsü** 
+
+![digi](https://github.com/user-attachments/assets/d6c86e83-b6d3-4bbe-b4af-ff32536b18b4)
+
+---
+
 ### **Proje Açıklaması**  
 DigiNote, kullanıcıların not oluşturmasını, düzenlemesini ve silmesini sağlayan modern ve kullanışlı bir not alma uygulamasıdır. Uygulama, yerel depolama (localStorage) kullanarak notları kaydeder, böylece kullanıcılar sayfayı kapatsalar bile notlarını kaybetmezler.
 
