@@ -1,7 +1,7 @@
-# **Dijital Not Defteri**
+# **DigiNote**
 
 ### **Proje Açıklaması**  
-Dijital Not Defteri, kullanıcıların not oluşturmasını, düzenlemesini ve silmesini sağlayan modern ve kullanışlı bir not alma uygulamasıdır. Uygulama, yerel depolama (localStorage) kullanarak notları kaydeder, böylece kullanıcılar sayfayı kapatsalar bile notlarını kaybetmezler.
+DigiNote, kullanıcıların not oluşturmasını, düzenlemesini ve silmesini sağlayan modern ve kullanışlı bir not alma uygulamasıdır. Uygulama, yerel depolama (localStorage) kullanarak notları kaydeder, böylece kullanıcılar sayfayı kapatsalar bile notlarını kaybetmezler.
 
 ---
 
@@ -70,5 +70,3 @@ Projeye katkıda bulunmak isterseniz aşağıdaki adımları izleyebilirsiniz:
 5. **Pull Request Gönderin**  
    Değişikliklerinizi ana projeye dahil etmek için bir pull request (PR) gönderin.
    GitHub üzerinden PR göndermek için "Pull Request" butonunu tıklayarak gerekli açıklamaları ekleyin.
-
-
