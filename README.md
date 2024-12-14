@@ -35,7 +35,7 @@ Proje çalıştırmak için aşağıdaki araçların bilgisayarınızda kurulu o
 1. Projeyi klonlayın:  
    ```bash
    git clone https://github.com/kullanici-adi/dijital-not-defteri.git
-   cd dijital-not-defteri
+   cd digiNote
 2. Bağımlılıkları yükleyin:  
    ```bash
    npm install
