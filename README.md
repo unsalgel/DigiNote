@@ -45,12 +45,14 @@ Proje çalıştırmak için aşağıdaki araçların bilgisayarınızda kurulu o
    # veya
    yarn start
 
-## *Katkıda Bulunma*
+## **Katkıda Bulunma**
 Projeye katkıda bulunmak isterseniz aşağıdaki adımları izleyebilirsiniz:
 
-Projeyi fork’layın.
-Yeni bir branch oluşturun: git checkout -b yeni-ozellik.
-Değişikliklerinizi yapın ve commit edin: git commit -m "Yeni özellik eklendi".
-Branch'i push edin: git push origin yeni-ozellik.
-Pull request gönderin.
+1. **Projeyi Fork’layın**  
+   Öncelikle bu projeyi GitHub üzerinde fork’layın.
+
+2. **Yeni Bir Branch Oluşturun**  
+   Yeni bir branch oluşturun:  
+   ```bash
+   git checkout -b yeni-ozellik
 
