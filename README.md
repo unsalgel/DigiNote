@@ -56,3 +56,19 @@ Projeye katkıda bulunmak isterseniz aşağıdaki adımları izleyebilirsiniz:
    ```bash
    git checkout -b yeni-ozellik
 
+3. **Yapılacak Değişiklikler**  
+   Projeye yapacağınız değişiklikleri bu branch üzerinde gerçekleştirin.
+   Değişikliklerinizi test ettikten sonra, yapılan değişikliklerin commit edilmesi gerekmektedir:
+   ```bash
+   git commit -m "Açıklama: Yeni özellik veya düzeltme"
+
+4. **Değişiklikleri Push Edin**  
+   Branch'inizdeki değişiklikleri kendi fork’ınıza gönderebilirsiniz:
+   ```bash
+   git push origin yeni-ozellik
+   
+5. **Pull Request Gönderin**  
+   Değişikliklerinizi ana projeye dahil etmek için bir pull request (PR) gönderin.
+   GitHub üzerinden PR göndermek için "Pull Request" butonunu tıklayarak gerekli açıklamaları ekleyin.
+
+
